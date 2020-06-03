@@ -1,4 +1,4 @@
 
 angular.module('myApp').component('titleComponent', {
-    template: '<h3>Hello World AngularJS</h3>'
+    template: '<h1>Lista de clietes cadastrados</h1>'
 });
