@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Components AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="/css/sidenav.css" rel="stylesheet">
+    <link href="/css/formulario.css" rel="stylesheet">
+</head>
+<body ng-controller="userController">
+<style>
+    li{
+        cursor: pointer;
+    }
+    li:hover {
+        background-color: #f9f9f9;
+    }
+</style>
+
+        <h3 style="text-align: center;">Auto Complete</h3>
+        <div class="container" style="width:500px;">
+            <div>
+                <input type="text" name="country" id="country" ng-model="country" ng-keyup="complete(country)" class="form-control" />  
+                <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">  
+                     <li class="list-group-item" ng-repeat="countrydata in filterCountry"
+                     ng-click="fillTextbox(countrydata)">{{countrydata}}</li>  
+                </ul> 
+            </div>
+        </div>
+
+</body>
+</html>
+<script>
+    const app = angular.module('myApp',[])
+    app.controller('userController', function($scope) {
+        $scope.countryList = [
+            "Ryan", "Torres", "Mulambo"
+        ];
+        $scope.complete = function(string) {
+            $scope.hidethis = false; 
+            const output = [];
+            angular.forEach($scope.countryList, function(country) {
+                if(country.toLowerCase().indexOf(string.toLowerCase()) >=0) {
+                    output.push(country);
+                }
+            });
+            $scope.filterCountry = output;
+        }
+        $scope.fillTextbox = function(string) {
+            $scope.country = string;
+            $scope.hidethis = true;
+        }
+
+    });
+
+</script>
