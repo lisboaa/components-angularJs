@@ -1,0 +1,10 @@
+<ui-select ng-model="$ctrl.selecionado" theme="select2" style="min-width: 300px;" title="Choose a person">
+    <ui-select-match placeholder="Select a person in the list or search his name/age...">{{$select.selected.nome}}</ui-select-match>
+    <ui-select-choices 
+    refresh="$ctrl.buscar($select.search)"
+    refresh-delay='$ctrl.delay'
+    repeat="person in $ctrl.pessoas"
+    >
+      <div ng-bind-html="person.nome | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>

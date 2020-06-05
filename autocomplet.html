@@ -34,10 +34,25 @@
 </html>
 <script>
     const app = angular.module('myApp',[])
-    app.controller('userController', function($scope) {
+    app.controller('userController', function($scope, $http) {
         $scope.countryList = [
             "Ryan", "Torres", "Mulambo"
         ];
+
+        $scope.buscarDados = () => {
+            $http({
+                url:'/data/src/controllers/PessoaController.php?acao=buscar',
+                method: 'GET',
+                data: $scope.pessoa
+            }).then((response) => {
+                return response;
+            }).catch((error) => {
+                console.log(error);
+                
+            }) 
+        }
+
+
         $scope.complete = function(string) {
             $scope.hidethis = false; 
             const output = [];

@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  atividadephp:
+    container_name: php-component
+    build:
+      context: .
+    ports:
+      - 9008:80
+    volumes:
+      - .:/var/www/html
+    restart: always
